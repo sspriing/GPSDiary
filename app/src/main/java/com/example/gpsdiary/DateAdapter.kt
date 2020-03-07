@@ -1,13 +1,17 @@
 package com.example.gpsdiary
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.date_item.view.*
 
-class DateAdapter(dates: MutableList<DateClass>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
+class DateAdapter(context: Context, dates: MutableList<DateClass>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
 
     var dates = dates
+    val context = context
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int) = ViewHolder(parent)
 
@@ -22,7 +26,8 @@ class DateAdapter(dates: MutableList<DateClass>): RecyclerView.Adapter<DateAdapt
         }
 
         holder.itemView.setOnClickListener {
-            println("Clicked: ${dates.get(position).date}")
+            val nextIntent = Intent(context, DateActivity::class.java)
+            context.startActivity(nextIntent)
         }
     }
 

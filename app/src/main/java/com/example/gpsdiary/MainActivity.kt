@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         val nownow: DateClass = DateClass(now)
         var i = mutableListOf<DateClass>(nownow, nownow)
 
-        recycle_date.adapter = DateAdapter(i)
+        recycle_date.adapter = DateAdapter(this, i)
         recycle_date.layoutManager = LinearLayoutManager(this)
     }
 
