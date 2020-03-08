@@ -6,22 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.gms.maps.MapView
+
+    <fragment
         android:id="@+id/mapView"
-        android:layout_width="367dp"
-        android:layout_height="271dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="358dp"
+        android:layout_height="213dp"
         android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.384"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context="com.sxample.currentplacedetailsonmap.MapsActivityCurrentPlace" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycle_spot"
         android:layout_width="365dp"
-        android:layout_height="395dp"
+        android:layout_height="436dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mapView"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/mapView" />
 </androidx.constraintlayout.widget.ConstraintLayout>
