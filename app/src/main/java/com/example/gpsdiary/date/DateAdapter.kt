@@ -1,11 +1,11 @@
-package com.example.gpsdiary
+package com.example.gpsdiary.date
 
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.gpsdiary.R
 import kotlinx.android.synthetic.main.date_item.view.*
 
 class DateAdapter(context: Context, dates: MutableList<DateClass>): RecyclerView.Adapter<DateAdapter.ViewHolder>() {
@@ -17,7 +17,7 @@ class DateAdapter(context: Context, dates: MutableList<DateClass>): RecyclerView
 
 
     override fun getItemCount(): Int  = dates.size
-    override fun onBindViewHolder(holder: DateAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         dates[position].let{
             item->
             with(holder){

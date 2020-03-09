@@ -1,4 +1,4 @@
-package com.example.gpsdiary
+package com.example.gpsdiary.date
 
 import java.time.LocalDate
 
