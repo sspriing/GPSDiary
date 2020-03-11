@@ -7,6 +7,10 @@ import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gpsdiary.date.DateAdapter
 import com.example.gpsdiary.date.DateClass
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
 
@@ -30,6 +34,5 @@ class MainActivity : AppCompatActivity() {
         recycle_date.adapter = DateAdapter(this, i)
         recycle_date.layoutManager = LinearLayoutManager(this)
     }
-
 
 }
