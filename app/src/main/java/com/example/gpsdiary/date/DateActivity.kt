@@ -23,10 +23,14 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.gms.maps.model.PolylineOptions
+import org.alternativevision.gpx.GPXParser
+import org.alternativevision.gpx.beans.GPX
 import org.jetbrains.anko.alert
 import org.jetbrains.anko.noButton
 import org.jetbrains.anko.toast
 import org.jetbrains.anko.yesButton
+import java.io.FileInputStream
+import java.io.FileOutputStream
 
 class DateActivity : AppCompatActivity(), OnMapReadyCallback {
     //위치정보 기록을 위한 변수
@@ -101,6 +105,12 @@ class DateActivity : AppCompatActivity(), OnMapReadyCallback {
                 polylineOptions.add(latLng)
                 //선그리기
                 mMap.addPolyline(polylineOptions)
+
+                val p = GPXParser()
+                val gpx = GPX()
+                val out = FileOutputStream("outFile.gpx")
+                p.writeGPX(gpx, out)
+                out.close()
             }
         }
     }

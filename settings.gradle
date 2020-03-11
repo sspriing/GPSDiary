@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':gpxparser-20130603'
 rootProject.name='GPSDiary'
