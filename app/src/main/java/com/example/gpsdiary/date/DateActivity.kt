@@ -106,11 +106,11 @@ class DateActivity : AppCompatActivity(), OnMapReadyCallback {
                 //선그리기
                 mMap.addPolyline(polylineOptions)
 
-                val p = GPXParser()
-                val gpx = GPX()
-                val out = FileOutputStream("outFile.gpx")
-                p.writeGPX(gpx, out)
-                out.close()
+//                val p = GPXParser()
+//                val gpx = GPX()
+//                val out = FileOutputStream("outFile.gpx")
+//                p.writeGPX(gpx, out)
+//                out.close()
             }
         }
     }

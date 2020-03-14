@@ -1,5 +1,14 @@
 package com.example.gpsdiary.spot
 
-class SpotClass(var latitude: Double, var longtitude: Double) {
+import io.realm.annotations.PrimaryKey
+import java.sql.Time
+import java.time.LocalDate
+
+open class SpotClass(
+    @PrimaryKey var id: Int = 0,
+    var time: Time,
+    var location: LocationClass,
+    var date: LocalDate
+) {
 
 }
