@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1064220643005",
+    "firebase_url": "https://gps-diary-270312.firebaseio.com",
+    "project_id": "gps-diary-270312",
+    "storage_bucket": "gps-diary-270312.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1064220643005:android:9b451181ad93f43c3ef1d4",
+        "android_client_info": {
+          "package_name": "com.example.gpsdiary"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1064220643005-uniie3nt43pvtgjg1uq81up7cvcm4puh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gpsdiary",
+            "certificate_hash": "65c195bdf3d21d827bcc6e163988094fbda532bd"
+          }
+        },
+        {
+          "client_id": "1064220643005-1j7itvd0qcnngqjar9n1e74g4emtsbjr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqqRTJbiTtiXMfFzTPBb9BAD8YDdqRXAw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1064220643005-1j7itvd0qcnngqjar9n1e74g4emtsbjr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
