@@ -9,7 +9,7 @@ import com.example.gpsdiary.R
 import com.example.gpsdiary.date.DateActivity
 import kotlinx.android.synthetic.main.date_item.view.*
 
-class SpotAdapter(context: Context, spots: MutableList<SpotClass>): RecyclerView.Adapter<SpotAdapter.ViewHolder>() {
+class SpotAdapter(context: Context, spots: MutableList<LocationClass>): RecyclerView.Adapter<SpotAdapter.ViewHolder>() {
 
     var spots = spots
     val context = context
