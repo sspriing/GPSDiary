@@ -16,9 +16,8 @@ import java.time.LocalDate
 class MainActivity : AppCompatActivity() {
 
     val database : FirebaseDatabase = FirebaseDatabase.getInstance()
-    val myRef : DatabaseReference = database.getReference("mesage")
+    val myRef : DatabaseReference = database.getReference("userID")
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -35,8 +34,8 @@ class MainActivity : AppCompatActivity() {
         recycle_date.layoutManager = LinearLayoutManager(this)
 
         button.setOnClickListener {
-            myRef.child("User").push().setValue("Me")
-            myRef.child("User").child("date").push().setValue("Today")
+            myRef.child("userID").push().setValue("Me")
+            myRef.child("User").child("date").push().setValue(LocalDate.now().toString())
         }
 
     }
