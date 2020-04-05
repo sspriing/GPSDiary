@@ -17,36 +17,25 @@ class MainActivity : AppCompatActivity() {
 
     val database : FirebaseFirestore = FirebaseFirestore.getInstance()
     val TAG = "MyMessage"
+    //현재시간을 MutableList로 저장 (임시)
+    val now : LocalDate = LocalDate.now()
+    val nownow: DateClass =
+        DateClass(now.toString())
+    var i = mutableListOf<DateClass>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //현재시간을 MutableList로 저장 (임시)
-        val now : LocalDate = LocalDate.now()
-        val nownow: DateClass =
-            DateClass(now.toString())
-        var i = mutableListOf<DateClass>(nownow)
-
+        getDate("User")
 
         //date에 들어있는 배열을 불러와서 RecyclerView에 보여줌
         recycle_date.adapter = DateAdapter(this, i)
         recycle_date.layoutManager = LinearLayoutManager(this)
 
         button.setOnClickListener {
-
-            createUser("Bomi Seo")
-            database.collection("GPSDiary").get()
-                .addOnSuccessListener {result ->
-                    for(document in result){
-                        Log.d(TAG, "${document.id}==>${document.data}Here")
-                        textView.setText("${document["userID"]}")
-
-                    }
-                }
-                .addOnFailureListener{exception ->
-                    Log.w(TAG, "Error getting documents.", exception)
-                }
+            createDate(nownow)
+            getDate("User")
         }
 
     }
@@ -64,7 +53,38 @@ class MainActivity : AppCompatActivity() {
                 Log.d(TAG, "DocumentSnapshot add with ID: ${documentReference}")
             }
             .addOnFailureListener{e->
-                Log.w(TAG, "Error adding document", e)}
+                Log.w(TAG, "Error adding document", e)
+            }
+    }
+
+    private fun createDate(date: DateClass){
+        database.collection("GPSDiary")
+            .document("User")
+            .collection("Date")
+            .document("${date.date}")
+            .set(date)
+            .addOnSuccessListener { documentReference ->
+                Log.d(TAG, "DocumentSnapshot add with ID: ${documentReference}")
+            }
+            .addOnFailureListener{e ->
+                Log.w(TAG, "Error adding document", e)
+            }
+    }
+
+    private fun getDate(name: String){
+        database.collection("GPSDiary")
+            .document("User")
+            .collection("date")
+            .get()
+            .addOnSuccessListener {result ->
+                for(document in result){
+                    Log.d(TAG, "${document.id}==>${document.data}Here")
+                    i.add(DateClass(document.data.toString()))
+                }
+            }
+            .addOnFailureListener{exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
     }
 
     private fun getInfo(name: String){

@@ -1,5 +1,3 @@
 package com.example.gpsdiary.date
 
-class DateClass(var date: String) {
-
-}
+data class DateClass(var date: String? = null)
