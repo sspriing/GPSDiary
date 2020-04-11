@@ -17,6 +17,12 @@ class DateAdapter(context: Context, dates: MutableList<DateClass>): RecyclerView
 
 
     override fun getItemCount(): Int  = dates.size
+    fun addItem(date: DateClass){
+        if(dates.contains(date)==false){
+            dates.add(date)
+            notifyDataSetChanged()
+        }
+    }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         dates[position].let{
             item->

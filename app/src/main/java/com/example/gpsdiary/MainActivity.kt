@@ -22,20 +22,23 @@ class MainActivity : AppCompatActivity() {
     val nownow: DateClass =
         DateClass(now.toString())
     var i = mutableListOf<DateClass>()
+    lateinit var mAdapter : DateAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         getDate("User")
-
         //date에 들어있는 배열을 불러와서 RecyclerView에 보여줌
-        recycle_date.adapter = DateAdapter(this, i)
+
+        mAdapter = DateAdapter(this, i)
+        recycle_date.adapter = mAdapter
         recycle_date.layoutManager = LinearLayoutManager(this)
+
 
         button.setOnClickListener {
             createDate(nownow)
-            getDate("User")
+            mAdapter.addItem(nownow)
         }
 
     }
@@ -72,26 +75,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDate(name: String){
+        setContentView(R.layout.activity_main)
+        var date : DateClass
         database.collection("GPSDiary")
-            .document("User")
-            .collection("date")
+            .document(name)
+            .collection("Date")
             .get()
             .addOnSuccessListener {result ->
                 for(document in result){
                     Log.d(TAG, "${document.id}==>${document.data}Here")
-                    i.add(DateClass(document.data.toString()))
-                }
-            }
-            .addOnFailureListener{exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
-    }
-
-    private fun getInfo(name: String){
-        database?.collection("User").whereEqualTo("userName","Bomi").get()
-            .addOnSuccessListener {result ->
-                for(document in result){
-                    Log.d(TAG, "${document.id}==>${document.data}")
+                    date = DateClass(document.id)
+                    mAdapter.addItem(date)
+                    textView.setText(document.id)
 
                 }
             }
