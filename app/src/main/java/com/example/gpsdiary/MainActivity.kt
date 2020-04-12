@@ -6,23 +6,24 @@ import android.os.Bundle
 import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.gpsdiary.date.DateActivity
 import com.example.gpsdiary.date.DateAdapter
 import com.example.gpsdiary.date.DateClass
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_main.*
 import java.time.LocalDate
+import java.util.*
 
 
 class MainActivity : AppCompatActivity() {
 
     val database : FirebaseFirestore = FirebaseFirestore.getInstance()
     val TAG = "MyMessage"
-    //현재시간을 MutableList로 저장 (임시)
-    val now : LocalDate = LocalDate.now()
-    val nownow: DateClass =
-        DateClass(now.toString())
+    val nownow: DateClass = DateClass(LocalDate.now().toString())
     var i = mutableListOf<DateClass>()
     lateinit var mAdapter : DateAdapter
+    var record  = false
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,25 +40,17 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener {
             createDate(nownow)
             mAdapter.addItem(nownow)
+            if(record ==false){
+                record =true
+                recordLoc(nownow)
+                button.setText("오늘 기록 중지")
+            }
+            else{
+                record=false
+                button.setText("오늘 기록 시작")
+            }
         }
 
-    }
-
-    private fun createUser(name: String){
-        val user = hashMapOf(
-            "userName" to name,
-            "userID" to name
-        )
-
-        database.collection("GPSDiary")
-             .document()
-             .set(user)
-            .addOnSuccessListener { documentReference ->
-                Log.d(TAG, "DocumentSnapshot add with ID: ${documentReference}")
-            }
-            .addOnFailureListener{e->
-                Log.w(TAG, "Error adding document", e)
-            }
     }
 
     private fun createDate(date: DateClass){
@@ -86,8 +79,6 @@ class MainActivity : AppCompatActivity() {
                     Log.d(TAG, "${document.id}==>${document.data}Here")
                     date = DateClass(document.id)
                     mAdapter.addItem(date)
-                    textView.setText(document.id)
-
                 }
             }
             .addOnFailureListener{exception ->
@@ -95,5 +86,8 @@ class MainActivity : AppCompatActivity() {
             }
     }
 
-
+    private fun recordLoc(date: DateClass){
+        val recordLocation =RecordLocation(this, this, date)
+        recordLocation.locationInit(this)
+    }
 }

@@ -99,6 +99,7 @@ class DateActivity : AppCompatActivity(), OnMapReadyCallback {
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 17f))
                 //로그에 위도경도 저장
                 Log.d("DataActivity", "위도: $latitude, 경도: $longitude")
+
                 //PolyLine에 좌표추가
                 polylineOptions.add(latLng)
                 //선그리기
